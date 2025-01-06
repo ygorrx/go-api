@@ -24,6 +24,7 @@ func main() {
 	ProductController := controller.NewProductController(ProductUseCase)
 	server.GET("/products", ProductController.GetProducts)
 	server.POST("/products", ProductController.CreateProduct)
+	server.GET("/products/:id", ProductController.GetProductById)
 
 	server.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{

@@ -64,3 +64,14 @@ func (p *ProductRepository) CreateProduct(product model.Product) (int, error) {
 	query.Close()
 	return id, nil
 }
+
+func (p *ProductRepository) GetProductById(id int) (*model.Product, error) {
+	var product model.Product
+	query := "SELECT * FROM product WHERE id = $1"
+	err := p.connection.QueryRow(query, id).Scan(&product.ID, &product.Name, &product.Price)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	return &product, nil
+}

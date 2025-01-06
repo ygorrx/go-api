@@ -28,3 +28,7 @@ func (p *ProductUseCase) CreateProduct(product model.Product) (model.Product, er
 	product.ID = productId
 	return product, nil
 }
+
+func (p *ProductUseCase) GetProductById(id int) (*model.Product, error) {
+	return p.repository.GetProductById(id)
+}
